@@ -10,7 +10,7 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .library(name: "Chiaroscuro", targets: ["Chiaroscuro"]),
+        .library(name: "Chiaroscuro", type: .dynamic, targets: ["Chiaroscuro"]),
     ],
     targets: [
         .target(name: "Chiaroscuro"),
