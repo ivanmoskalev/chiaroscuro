@@ -12,7 +12,7 @@ public struct AttributedStringView: UIViewRepresentable {
     public init(attributedText: NSAttributedString) {
         self.attributedText = attributedText
     }
-    
+
     public typealias UIViewType = CachingTextView
 
     public func makeUIView(context _: Context) -> CachingTextView {

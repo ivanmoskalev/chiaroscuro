@@ -7,7 +7,7 @@ public struct TableSection<HeaderItem, Item: Identifiable & Equatable>: Equatabl
     public let header: HeaderItem
     /// Items in this section
     public let items: [Item]
-    
+
     /// Creates a new table section
     /// - Parameters:
     ///   - header: The section header
@@ -27,7 +27,7 @@ public struct TableView<Item: Identifiable & Equatable, Content: View, HeaderCon
     @Binding private var sections: [TableSection<String, Item>]
     private let cellBuilder: (Item) -> Content
     private let headerBuilder: (String) -> HeaderContent
-    
+
     /// Creates a new TableView
     /// - Parameters:
     ///   - sections: The sections to display
@@ -38,7 +38,7 @@ public struct TableView<Item: Identifiable & Equatable, Content: View, HeaderCon
         cellBuilder: @escaping (Item) -> Content,
         headerBuilder: @escaping (String) -> HeaderContent
     ) {
-        self._sections = sections
+        _sections = sections
         self.cellBuilder = cellBuilder
         self.headerBuilder = headerBuilder
     }
@@ -77,7 +77,7 @@ public struct TableView<Item: Identifiable & Equatable, Content: View, HeaderCon
             headerBuilder: headerBuilder
         )
     }
-    
+
     /// Coordinator for TableView
     public class Coordinator: NSObject, UITableViewDataSource, UITableViewDelegate {
         var sections: [TableSection<String, Item>]

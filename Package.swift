@@ -6,8 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Chiaroscuro",
     platforms: [
-        .macOS(.v10_15),
-        .iOS(.v15)
+        .iOS(.v15),
     ],
     products: [
         .library(name: "Chiaroscuro", type: .dynamic, targets: ["Chiaroscuro"]),

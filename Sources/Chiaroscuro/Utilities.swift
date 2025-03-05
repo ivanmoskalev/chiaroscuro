@@ -11,7 +11,7 @@ public extension View {
 /// View modifier for navigation bar appearance.
 private struct NavigationBarStyle: ViewModifier {
     let translucent: Bool
-    
+
     func body(content: Content) -> some View {
         content
             .onAppear {
@@ -21,7 +21,7 @@ private struct NavigationBarStyle: ViewModifier {
                 } else {
                     appearance.configureWithDefaultBackground()
                 }
-                
+
                 UINavigationBar.appearance().standardAppearance = appearance
                 UINavigationBar.appearance().scrollEdgeAppearance = appearance
             }
