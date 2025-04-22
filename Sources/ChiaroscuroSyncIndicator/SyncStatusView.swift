@@ -24,7 +24,6 @@ public struct SyncStatusView: View {
             Image(systemName: "exclamationmark.icloud.fill")
                 .symbolRenderingMode(.multicolor)
                 .foregroundStyle(.red)
-                .symbolEffect(.pulse, options: .repeating)
                 .transition(.opacity)
         case .success, .idle:
             Image(systemName: "checkmark.icloud.fill")
