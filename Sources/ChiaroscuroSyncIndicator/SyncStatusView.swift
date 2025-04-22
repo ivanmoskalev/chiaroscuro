@@ -26,17 +26,11 @@ public struct SyncStatusView: View {
                 .foregroundStyle(.red)
                 .symbolEffect(.pulse, options: .repeating)
                 .transition(.opacity)
-        case .success(let date):
-            if Date().timeIntervalSince(date) < 60 {
-                Image(systemName: "checkmark.icloud.fill")
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(.green)
-                    .transition(.opacity)
-            } else {
-                EmptyView()
-            }
-        case .idle:
-            EmptyView()
+        case .success, .idle:
+            Image(systemName: "checkmark.icloud.fill")
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(.green)
+                .transition(.opacity)
         }
     }
     
