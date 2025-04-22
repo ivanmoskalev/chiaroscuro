@@ -1,19 +1,18 @@
-import SwiftUI
 import Observation
+import SwiftUI
 
 public struct SyncStatusView: View {
     @Environment(\.syncStatusObserver) var observer
-    
-    public init() {
-    }
-    
+
+    public init() {}
+
     public var body: some View {
         contentView
             .animation(.easeInOut(duration: 0.3), value: observer.state)
             .padding([.horizontal], 8)
             .padding([.vertical], 4)
     }
-    
+
     @ViewBuilder
     private var contentView: some View {
         switch observer.state {
@@ -33,12 +32,12 @@ public struct SyncStatusView: View {
                 .transition(.opacity)
         }
     }
-    
+
     private var syncingImage: some View {
         let view = Image(systemName: "arrow.triangle.2.circlepath.icloud")
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.blue)
-        
+
         if #available(iOS 18.0, *) {
             return view.symbolEffect(.bounce, options: .repeating)
         } else {
@@ -49,10 +48,9 @@ public struct SyncStatusView: View {
 
 public extension View {
     func withSyncStatusObserver(_ observer: SyncStatusObserver) -> some View {
-        self.environment(\.syncStatusObserver, observer)
+        environment(\.syncStatusObserver, observer)
     }
 }
-
 
 private struct SyncStatusObserverKey: EnvironmentKey {
     nonisolated(unsafe) static let defaultValue = SyncStatusObserver()

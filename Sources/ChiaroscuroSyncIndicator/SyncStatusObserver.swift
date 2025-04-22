@@ -1,28 +1,28 @@
-import SwiftUI
-import SwiftData
-import Combine
 import CloudKit
+import Combine
 import CoreData
 import Observation
+import SwiftData
+import SwiftUI
 
 public enum SyncState: Equatable {
     case idle
     case syncing
     case success(date: Date)
     case error(Error)
-    
+
     public static func == (lhs: SyncState, rhs: SyncState) -> Bool {
         switch (lhs, rhs) {
         case (.idle, .idle):
-            return true
+            true
         case (.syncing, .syncing):
-            return true
+            true
         case let (.success(lDate), .success(rDate)):
-            return lDate == rDate
+            lDate == rDate
         case (.error, .error):
-            return true
+            true
         default:
-            return false
+            false
         }
     }
 }
@@ -31,21 +31,21 @@ public enum SyncState: Equatable {
 public final class SyncStatusObserver {
     public var state: SyncState = .idle
     @ObservationIgnored private var cancellables = Set<AnyCancellable>()
-    
+
     public init() {
         NotificationCenter.default.publisher(for: ModelContext.didSave)
             .sink { [weak self] _ in
                 self?.state = .syncing
             }
             .store(in: &cancellables)
-        
+
         NotificationCenter.default.publisher(for: NSPersistentCloudKitContainer.eventChangedNotification)
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [weak self] notification in
                 guard let event = notification.userInfo?[NSPersistentCloudKitContainer.eventNotificationUserInfoKey] as? NSPersistentCloudKitContainer.Event else {
                     return
                 }
-                
+
                 switch event.type {
                 case .setup, .import, .export:
                     switch event.endDate {
