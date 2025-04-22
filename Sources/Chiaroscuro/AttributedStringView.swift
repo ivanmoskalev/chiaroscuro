@@ -2,13 +2,9 @@ import Foundation
 import SwiftUI
 import UIKit
 
-/// A SwiftUI wrapper for UITextView that displays attributed strings.
 public struct AttributedStringView: UIViewRepresentable {
-    /// The attributed string to display
     public let attributedText: NSAttributedString
 
-    /// Creates a new AttributedStringView
-    /// - Parameter attributedText: The attributed string to display
     public init(attributedText: NSAttributedString) {
         self.attributedText = attributedText
     }

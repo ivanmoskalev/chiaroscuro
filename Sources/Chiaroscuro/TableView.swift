@@ -1,17 +1,10 @@
 import SwiftUI
 import UIKit
 
-/// Represents a section in a custom table with a header and items.
 public struct TableSection<HeaderItem, Item: Identifiable & Equatable>: Equatable {
-    /// The section header
     public let header: HeaderItem
-    /// Items in this section
     public let items: [Item]
 
-    /// Creates a new table section
-    /// - Parameters:
-    ///   - header: The section header
-    ///   - items: Items in this section
     public init(header: HeaderItem, items: [Item]) {
         self.header = header
         self.items = items
@@ -22,17 +15,11 @@ public struct TableSection<HeaderItem, Item: Identifiable & Equatable>: Equatabl
     }
 }
 
-/// A SwiftUI wrapper for UITableView with section headers and custom cells.
 public struct TableView<Item: Identifiable & Equatable, Content: View, HeaderContent: View>: UIViewRepresentable {
     @Binding private var sections: [TableSection<String, Item>]
     private let cellBuilder: (Item) -> Content
     private let headerBuilder: (String) -> HeaderContent
 
-    /// Creates a new TableView
-    /// - Parameters:
-    ///   - sections: The sections to display
-    ///   - cellBuilder: A closure that builds a cell for an item
-    ///   - headerBuilder: A closure that builds a header for a section
     public init(
         sections: Binding<[TableSection<String, Item>]>,
         cellBuilder: @escaping (Item) -> Content,
@@ -78,7 +65,6 @@ public struct TableView<Item: Identifiable & Equatable, Content: View, HeaderCon
         )
     }
 
-    /// Coordinator for TableView
     public class Coordinator: NSObject, UITableViewDataSource, UITableViewDelegate {
         var sections: [TableSection<String, Item>]
         let cellBuilder: (Item) -> Content
@@ -152,7 +138,6 @@ public struct TableView<Item: Identifiable & Equatable, Content: View, HeaderCon
     }
 }
 
-/// Cell for hosting SwiftUI views
 private class HostingCell: UITableViewCell {
     static let id = "HostingCell"
     var host: UIHostingController<AnyView>?
@@ -172,7 +157,6 @@ private class HostingCell: UITableViewCell {
     }
 }
 
-/// Header view for hosting SwiftUI views
 private class HostingHeaderView: UITableViewHeaderFooterView {
     static let id = "HostingHeaderView"
     var host: UIHostingController<AnyView>?

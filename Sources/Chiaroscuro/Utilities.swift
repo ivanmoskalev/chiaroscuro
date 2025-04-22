@@ -1,14 +1,11 @@
 import SwiftUI
 
 public extension View {
-    /// Sets the navigation bar to translucent or opaque.
-    /// - Parameter translucent: Whether the navigation bar should be translucent
     func navigationBar(translucent: Bool) -> some View {
         modifier(NavigationBarStyle(translucent: translucent))
     }
 }
 
-/// View modifier for navigation bar appearance.
 private struct NavigationBarStyle: ViewModifier {
     let translucent: Bool
 
