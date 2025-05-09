@@ -9,8 +9,8 @@ let package = Package(
         .iOS(.v17),
     ],
     products: [
-        .library(name: "Chiaroscuro", targets: ["Chiaroscuro"]),
-        .library(name: "ChiaroscuroSyncIndicator", targets: ["ChiaroscuroSyncIndicator"]),
+        .library(name: "Chiaroscuro", type: .dynamic, targets: ["Chiaroscuro"]),
+        .library(name: "ChiaroscuroSyncIndicator", type: .dynamic, targets: ["ChiaroscuroSyncIndicator"]),
     ],
     targets: [
         .target(name: "Chiaroscuro"),
